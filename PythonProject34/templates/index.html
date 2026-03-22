@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BrewScout 🍺</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 10px;
+            margin-left: 10px;
+            background: #22c55e;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .card {
+            background: #1e293b;
+            margin: 15px auto;
+            padding: 15px;
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        a {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🍺 BrewScout</h1>
+
+<form method="POST">
+    <input type="text" name="city" placeholder="Enter city" required>
+    <button type="submit">Search</button>
+</form>
+
+{% for brewery in breweries %}
+    <div class="card">
+        <h3>{{ brewery.name }}</h3>
+        <p><b>City:</b> {{ brewery.city }}</p>
+        <p><b>Type:</b> {{ brewery.brewery_type }}</p>
+
+        {% if brewery.website_url %}
+            <a href="{{ brewery.website_url }}" target="_blank">Visit Website</a>
+        {% else %}
+            <p>No Website Available</p>
+        {% endif %}
+    </div>
+{% endfor %}
+
+</body>
+</html>
